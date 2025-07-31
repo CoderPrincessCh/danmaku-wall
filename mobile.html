@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>应援弹幕墙 - 手机端</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="input-box">
+    <input id="dm-nickname" placeholder="输入昵称" maxlength="8" />
+    <input id="dm-input" placeholder="输入你的弹幕~" maxlength="30" />
+    <button id="send-btn">发送</button>
+    <div id="status"></div>
+  </div>
+  <div id="mode-toggle">切换到大屏端显示</div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="js/config.js"></script>
+  <script>
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const input = document.getElementById('dm-input');
+    const nicknameInput = document.getElementById('dm-nickname');
+    const btn = document.getElementById('send-btn');
+    const status = document.getElementById('status');
+
+    btn.onclick = () => {
+      const text = input.value.trim();
+      if (!text) return alert('弹幕不能为空');
+      const nickname = nicknameInput.value.trim() || '匿名';
+      if (text.length > 30) {
+        status.textContent = '弹幕不能超过30个字';
+        return;
+      }
+      if (nickname.length > 8) {
+        status.textContent = '昵称不能超过8个字';
+        return;
+      }
+
+      btn.disabled = true;
+      db.ref('danmu').push({
+        text,
+        nickname,
+        time: Date.now()
+      }).then(() => {
+        input.value = '';
+        nicknameInput.value = '';
+        status.textContent = '发送成功！';
+      }).catch(() => {
+        alert('发送失败');
+      }).finally(() => {
+        btn.disabled = false;
+      });
+    };
+
+    document.getElementById('mode-toggle').onclick = () => {
+      location.href = 'index.html';
+    };
+  </script>
+</body>
+</html>

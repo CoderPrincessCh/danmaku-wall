@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>弹幕墙</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <video id="bg" autoplay loop muted>
+    <!-- <source src="assets/bg.mp4" type="video/mp4" /> -->
+  </video>
+  <div id="dm-container"></div>
+  <div id="mode-toggle">切换到手机端发弹幕</div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('mode-toggle').onclick = () => {
+      location.href = 'mobile.html';
+    };
+  </script>
+</body>
+</html>
