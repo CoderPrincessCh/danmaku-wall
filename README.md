@@ -1,8 +1,8 @@
 
-# 应援弹幕墙模板
+# 弹幕墙
 
 ## 介绍
-这是一个基于 Firebase Realtime Database 的高颜值应援弹幕墙前端模板。
+这是一个基于 Firebase Realtime Database 的高颜值弹幕墙前端。
 包含大屏端和手机端，支持历史弹幕加载、实时弹幕、循环播放。
 
 ## 使用步骤
@@ -17,6 +17,5 @@
 - 添加弹幕特效可扩展 `js/app.js`。
 
 ## 部署
-推荐部署到 GitHub Pages 或 Vercel：
+推荐部署到 GitHub Pages：
 - GitHub Pages：把代码仓库推送到 GitHub，开启 Pages 功能。
-- Vercel：直接上传项目目录，自动部署。
